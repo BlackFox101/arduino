@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #define led_red 12
 #define led_yellow 11
 #define led_green 10
@@ -7,8 +9,8 @@ void setup() {
   pinMode(led_yellow, OUTPUT);
   pinMode(led_green, OUTPUT);
 
-  Serial.begin(9600);
-  Serial.println("START");
+  // Serial.begin(9600);
+  // Serial.println("START");
 }
 
 void loop() {
