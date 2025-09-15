@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #define analogPin 0
 #define ledPin 3
 
