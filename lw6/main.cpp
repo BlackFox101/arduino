@@ -1,8 +1,11 @@
+#include <Arduino.h>
+
 #include <LiquidCrystal_I2C.h>
 
-#define trigPin 5
-#define echoPin 7
+#define trigPin 12
+#define echoPin 11
 
+// Arduino: SDA – A4, SCL – A5
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void setup() {
@@ -16,19 +19,19 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {
-  float distance = getDistanceSM();
-  Serial.println("Distance: " + String(distance) + " sm.");
-  lcd.setCursor(8, 1);
-  lcd.print(String(distance) + " sm.");
-  delay(50);
-}
-
 float getDistanceSM() {
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
-  uint32_t duration = pulseIn(echoPin, HIGH);
+  const uint32_t duration = pulseIn(echoPin, HIGH);
   return duration / 58.2;
+}
+
+void loop() {
+  const float distance = getDistanceSM();
+  Serial.println("Distance: " + String(distance) + " sm.");
+  lcd.setCursor(8, 1);
+  lcd.print(String(distance) + " sm.");
+  delay(50);
 }
