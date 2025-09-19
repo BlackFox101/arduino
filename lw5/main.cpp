@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #include <LiquidCrystal_I2C.h>
 
 // адрес дисплея 0x3f или 0x27
