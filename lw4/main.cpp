@@ -1,5 +1,7 @@
-#define trigPin 5
-#define echoPin 7
+#include <Arduino.h>
+
+#define trigPin 12
+#define echoPin 11
 
 void setup() {
   pinMode(trigPin, OUTPUT);
@@ -8,17 +10,17 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {
-  float distance = getDistanceSM();
-  Serial.println(distance);
-  delay(50);
-}
-
 float getDistanceSM() {
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
-  uint32_t duration = pulseIn(echoPin, HIGH);
+  const uint32_t duration = pulseIn(echoPin, HIGH);
   return duration / 58.2;
+}
+
+void loop() {
+  const float distance = getDistanceSM();
+  Serial.println(distance);
+  delay(50);
 }
